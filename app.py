@@ -63,8 +63,9 @@ def main():
         # Display the frame in the Streamlit app
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame_placeholder.image(frame, channels="RGB")
-        
-        if stop_button_pressed:
+        # cv2.imshow('Emotion Detector',frame)
+
+        if cv2.waitKey(1) & 0xFF == ord("q") or stop_button_pressed:
             break
 
     cap.release()
