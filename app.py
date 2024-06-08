@@ -10,7 +10,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 # Load the face detector and the trained model
-face_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # Load the Keras model
 classifier = load_model('model.h5')
