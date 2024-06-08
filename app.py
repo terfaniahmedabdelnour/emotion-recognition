@@ -67,7 +67,8 @@ def main():
 
         if cv2.waitKey(1) & 0xFF == ord("q") or stop_button_pressed:
             break
-
+        st.image()
+        
     cap.release()
     cv2.destroyAllWindows()
 
