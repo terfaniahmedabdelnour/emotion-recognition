@@ -1,11 +1,34 @@
+import cv2
+import numpy as np
+import streamlit as st
+from keras.models import load_model
+from keras.preprocessing.image import img_to_array
+import tensorflow as tf
 import logging
+
+# Setup logging
 logging.basicConfig(level=logging.DEBUG)
 
-def main():
-    st.set_page_config(page_title="Streamlit WebCam App")
-    st.title("Webcam Display Streamlit App")
-    st.caption("Powered by OpenCV, Streamlit")
+# Load the face detector and the trained model
+face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
+# Load the Keras model
+classifier = load_model('model.h5')
+
+# Freeze Batch Normalization layers (optional)
+for layer in classifier.layers:
+    if isinstance(layer, tf.keras.layers.BatchNormalization):
+        layer.trainable = False
+
+# Define the emotion labels
+emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
+
+# Set page configuration
+st.set_page_config(page_title="Streamlit WebCam App")
+st.title("Webcam Display Streamlit App")
+st.caption("Powered by OpenCV, Streamlit")
+
+def main():
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
         st.error("Webcam not accessible. Please check the connection and permissions.")
