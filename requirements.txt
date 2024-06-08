@@ -6,3 +6,4 @@ streamlit
 opencv-python-headless
 keras
 tensorflow
+cv2
