@@ -4,3 +4,5 @@ uvicorn
 numpy
 streamlit
 opencv-python-headless
+keras
+tensorflow
